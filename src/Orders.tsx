@@ -14,10 +14,9 @@ function createData(
   name: string,
   shipTo: string,
   paymentMethod: string,
-  amount: number,
-  payed: boolean,
+  amount: number
 ) {
-  return { id, date, name, shipTo, paymentMethod, amount, payed };
+  return { id, date, name, shipTo, paymentMethod, amount };
 }
 
 const rows = [
@@ -27,8 +26,7 @@ const rows = [
     'Elvis Presley',
     'Tupelo, MS',
     'VISA ⠀•••• 3719',
-    312.44,
-      true
+    312.44
   ),
   createData(
     1,
@@ -36,24 +34,22 @@ const rows = [
     'Paul McCartney',
     'London, UK',
     'VISA ⠀•••• 2574',
-    866.99,
-      true,
+    866.99
   ),
   createData(2,
       '16 Mar, 2019',
       'Tom Scholz',
       'Boston, MA',
       'MC ⠀•••• 1253',
-      100.81,
-      false),
+      100.81
+  ),
   createData(
     3,
     '16 Mar, 2019',
     'Michael Jackson',
     'Gary, IN',
     'AMEX ⠀•••• 2000',
-    654.39,
-      false,
+    654.39
   ),
   createData(
     4,
@@ -61,8 +57,7 @@ const rows = [
     'Bruce Springsteen',
     'Long Branch, NJ',
     'VISA ⠀•••• 5919',
-    212.79,
-      true
+    212.79
   ),
 ];
 
@@ -82,7 +77,6 @@ export default function Orders() {
             <TableCell>Ship To</TableCell>
             <TableCell>Payment Method</TableCell>
             <TableCell align="right">Sale Amount</TableCell>
-            <TableCell>Payed</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -93,7 +87,6 @@ export default function Orders() {
               <TableCell>{row.shipTo}</TableCell>
               <TableCell>{row.paymentMethod}</TableCell>
               <TableCell align="right">{`$${row.amount}`}</TableCell>
-              <TableCell>{row.payed}</TableCell>
             </TableRow>
           ))}
         </TableBody>
