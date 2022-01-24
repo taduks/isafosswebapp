@@ -28,7 +28,11 @@ function Copyright(props: any) {
 
 const theme = createTheme();
 
-export default function SignIn(token: boolean ) {
+interface SignInProps {
+    token?: boolean
+}
+
+export default function SignIn({ token }: SignInProps) {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
