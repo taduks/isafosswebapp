@@ -172,6 +172,4 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+export default DashboardContent as any
