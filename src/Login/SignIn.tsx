@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { OKTAAuthContext } from '../App/App';
 
 function Copyright(props: any) {
     return (
@@ -33,6 +34,7 @@ interface SignInProps {
 }
 
 export default function SignIn({ token }: SignInProps) {
+    const okta = React.useContext(OKTAAuthContext)
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -41,6 +43,11 @@ export default function SignIn({ token }: SignInProps) {
             email: data.get('email'),
             password: data.get('password'),
         });
+
+        okta.signIn({
+            username: data.get('email') as string,
+            password: data.get('password') as string,
+        })
     };
 
     return (

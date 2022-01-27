@@ -8,6 +8,8 @@
     "@material/typography": "^13.0.0",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.8",
+    "@okta/okta-auth-js": "^6.0.0",
+    "@okta/okta-react": "^6.4.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
