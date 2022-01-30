@@ -21,7 +21,6 @@ import { mainListItems } from './listItems';
 import Chart from '../Chart';
 import Deposits from '../Deposits';
 import Orders from '../Orders';
-import { Outlet } from 'react-router-dom';
 
 function Copyright(props: any) {
   return (
@@ -88,7 +87,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+function DashboardContent({ children }: any) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -163,7 +162,7 @@ function DashboardContent() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Outlet/>
+            {children}
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>

@@ -12,7 +12,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { OKTAAuthContext } from '../App/App';
+// import { OKTAAuthContext } from '../App/App';
+import { useLocation } from 'react-router-dom';
+import { AuthenticatorKey } from '@okta/okta-auth-js';
+import { useOktaAuth } from '@okta/okta-react';
 
 function Copyright(props: any) {
     return (
@@ -34,7 +37,9 @@ interface SignInProps {
 }
 
 export default function SignIn({ token }: SignInProps) {
-    const okta = React.useContext(OKTAAuthContext)
+    const { oktaAuth, authState } = useOktaAuth();
+
+    // const navigate = useNavigate()
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -44,15 +49,16 @@ export default function SignIn({ token }: SignInProps) {
             password: data.get('password'),
         });
 
-        okta.signInWithCredentials({
+        oktaAuth.signInWithRedirect({
             username: data.get('email') as string,
             password: data.get('password') as string,
+            redirectUri: "http://localhost:3000/dashboard"
         }).then(function(transaction) {
-            if (transaction.status === 'SUCCESS') {
-                okta.session.setCookieAndRedirect(transaction.sessionToken, "http://localhost:3000/dashboard"); // Sets a cookie on redirect
-            } else {
-                throw 'We cannot handle the ' + transaction.status + ' status';
-            }
+            // if (transaction.status === 'SUCCESS') {
+            //     okta.session.setCookieAndRedirect(transaction.sessionToken, "http://localhost:3000/dashboard"); // Sets a cookie on redirect
+            // } else {
+            //     throw 'We cannot handle the ' + transaction.status + ' status';
+            // }
         })
             .catch(function(err) {
                 console.error(err);

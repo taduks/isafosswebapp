@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { Navigate, useLocation } from "react-router-dom";
-import { OKTAAuthContext } from "../App/App";
+import { useLocation } from "react-router-dom";
+import { useOktaAuth } from '@okta/okta-react';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 interface ProtectedRouteProps {
     redirect: string
@@ -8,13 +9,13 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, redirect }) => {
-    const okta = useContext(OKTAAuthContext)
-    const loggedIn = okta.authStateManager.getAuthState()?.isAuthenticated //Change this to make dynamic protected routes
-    let location = useLocation();
+    // const okta = useContext(OKTAAuthContext)
+    // const loggedIn = okta.authStateManager.getAuthState()?.isAuthenticated //Change this to make dynamic protected routes
+    let { authState } = useOktaAuth();
 
-
-    if (!loggedIn) {
-        return <Navigate to={redirect} state={{ from: location }} replace />
+    // console.log(okta, loggedIn)
+    if (!authState?.isAuthenticated) {
+        return <Redirect to={redirect} />
     }
 
     return children
