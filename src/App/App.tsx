@@ -5,12 +5,14 @@ import AppRoutes from '../routes';
 import { createContext } from 'react';
 
 const oktaAuth = new OktaAuth({
-    issuer: 'https://{yourOktaDomain}.com/oauth2/default',
-    clientId: '{clientId}',
-    redirectUri: window.location.origin + '/login/callback'
+    issuer: 'https://dev-13815820.okta.com/oauth2/default',
+    clientId: '0oa2msj5qwHCL3oRl5d7',
+    redirectUri: window.location.origin + '/login/callback',
+    scopes: ['openid', 'profile', 'email'],
 });
 
 export const OKTAAuthContext = createContext(oktaAuth)
+
 function App() {
     // const location = useNavigate();
     const restoreOriginalUri = async (_oktaAuth: any, originalUri: string) => {

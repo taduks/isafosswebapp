@@ -44,10 +44,20 @@ export default function SignIn({ token }: SignInProps) {
             password: data.get('password'),
         });
 
-        okta.signIn({
+        okta.signInWithCredentials({
             username: data.get('email') as string,
             password: data.get('password') as string,
+        }).then(function(transaction) {
+            if (transaction.status === 'SUCCESS') {
+                okta.session.setCookieAndRedirect(transaction.sessionToken, "http://localhost:3000/dashboard"); // Sets a cookie on redirect
+            } else {
+                throw 'We cannot handle the ' + transaction.status + ' status';
+            }
         })
+            .catch(function(err) {
+                console.error(err);
+            });
+
     };
 
     return (
