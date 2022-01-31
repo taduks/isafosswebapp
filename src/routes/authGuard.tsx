@@ -11,7 +11,10 @@ interface ProtectedRouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, redirect }) => {
     // const okta = useContext(OKTAAuthContext)
     // const loggedIn = okta.authStateManager.getAuthState()?.isAuthenticated //Change this to make dynamic protected routes
-    let { authState } = useOktaAuth();
+    const { oktaAuth, authState } = useOktaAuth()
+
+    console.log('authguard:')
+    console.log(authState)
 
     // console.log(okta, loggedIn)
     if (!authState?.isAuthenticated) {

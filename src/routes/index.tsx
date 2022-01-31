@@ -8,7 +8,8 @@ import ISafPage from '../pages/iSAF/ISafPage';
 import SettingsPage from '../pages/Settings/SettingsPage';
 import ProtectedRoute from './authGuard';
 import SignIn from '../Login/SignIn';
-import OktaSecurity from './otka';
+import OktaSecurity from './okta';
+import {LoginCallback, SecureRoute} from "@okta/okta-react";
 
 function AppRoutes() {
     return (
@@ -16,6 +17,7 @@ function AppRoutes() {
             <OktaSecurity>
                 <Switch>
                     <Route path="/login" component={SignIn} />
+                    <Route path="/login/callback" component={LoginCallback} />
                     <ProtectedRoute redirect='login'>
                         <Dashboard>
                             <Switch>

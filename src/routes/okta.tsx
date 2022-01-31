@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 
 const oktaAuth = new OktaAuth({
     issuer: 'https://dev-13815820.okta.com/oauth2/default',
-    clientId: '0oa2msj5qwHCL3oRl5d7',
+    clientId: '0oa3ooyskl19QDTDz5d7',
     redirectUri: window.location.origin + '/login/callback',
     scopes: ['openid', 'profile', 'email'],
 });
