@@ -16,8 +16,8 @@ function AppRoutes() {
         <BrowserRouter>
             <OktaSecurity>
                 <Switch>
-                    <Route path="/login" component={SignIn} />
                     <Route path="/login/callback" component={LoginCallback} />
+                    <Route path="/login" component={SignIn} />
                     <ProtectedRoute redirect='login'>
                         <Dashboard>
                             <Switch>
