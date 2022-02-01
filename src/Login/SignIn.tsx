@@ -12,6 +12,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { OKTAAuthContext } from '../App/App';
+import { useLocation } from 'react-router-dom';
+import { AuthenticatorKey } from '@okta/okta-auth-js';
+import { useOktaAuth } from '@okta/okta-react';
 
 function Copyright(props: any) {
     return (
@@ -33,6 +37,9 @@ interface SignInProps {
 }
 
 export default function SignIn({ token }: SignInProps) {
+    const { oktaAuth, authState } = useOktaAuth();
+
+    // const navigate = useNavigate()
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -41,6 +48,18 @@ export default function SignIn({ token }: SignInProps) {
             email: data.get('email'),
             password: data.get('password'),
         });
+
+        oktaAuth.signInWithRedirect().then(function(transaction) {
+            // if (transaction.status === 'SUCCESS') {
+            //     okta.session.setCookieAndRedirect(transaction.sessionToken, "http://localhost:3000/dashboard"); // Sets a cookie on redirect
+            // } else {
+            //     throw 'We cannot handle the ' + transaction.status + ' status';
+            // }
+        })
+            .catch(function(err) {
+                console.error(err);
+            });
+
     };
 
     return (
@@ -62,50 +81,16 @@ export default function SignIn({ token }: SignInProps) {
                         Sign in
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                        />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
+
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign In
+                            With OKTA
                         </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
+
                     </Box>
                 </Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />

@@ -8,6 +8,8 @@
     "@material/typography": "^13.0.0",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.8",
+    "@okta/okta-auth-js": "^6.0.0",
+    "@okta/okta-react": "^6.4.1",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -17,7 +19,8 @@
     "@types/react-dom": "^17.0.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "^6.2.1",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.2.1",
     "react-scripts": "5.0.0",
     "recharts": "^2.1.8",
     "typescript": "^4.5.4",
@@ -46,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.3"
   }
 }
