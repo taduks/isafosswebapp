@@ -11,16 +11,13 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems } from './listItems';
-import Chart from '../Chart';
-import Deposits from '../Deposits';
-import Orders from '../Orders';
+import {useOktaAuth} from "@okta/okta-react";
+import {useEffect, useState} from "react";
 
 function Copyright(props: any) {
   return (
@@ -89,6 +86,19 @@ const mdTheme = createTheme();
 
 function DashboardContent({ children }: any) {
   const [open, setOpen] = React.useState(true);
+  const { oktaAuth, authState } = useOktaAuth();
+  const [userInfo, setUserInfo] = useState<string>("")
+
+  useEffect(() => {
+    if (!authState?.isAuthenticated) {
+      setUserInfo("")
+    } else {
+      oktaAuth.getUser().then(info => {
+        setUserInfo(info.email!);
+      });
+    }
+  }, );
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -129,6 +139,16 @@ function DashboardContent({ children }: any) {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+            <Typography
+                component="h2"
+                variant="subtitle1"
+                color="inherit"
+                noWrap
+                sx={{ flexGrow: 0 }}
+            >
+              {userInfo}
+            </Typography>
+
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
