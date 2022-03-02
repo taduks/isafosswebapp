@@ -1,10 +1,7 @@
 import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
 
-import AppRoutes from '../routes';
-import { createContext, useCallback } from 'react';
-import { SecureRoute, Security, LoginCallback } from '@okta/okta-react';
+import { Security} from '@okta/okta-react';
 import { useHistory } from 'react-router';
-// import { useNavigate } from 'react-router-dom';
 
 const oktaAuth = new OktaAuth({
     issuer: 'https://dev-13815820.okta.com/oauth2/default',
