@@ -3,7 +3,7 @@ import axios from "axios";
 
 const apiClient = (access_token: string) => {
     return axios.create({
-        baseURL: "http://20.93.233.201:9000",
+        baseURL: process.env.REACT_APP_ISAF_OSS_SERVICE_URL,
         headers: {
             "Content-type": "application/json",
             "Authorization": 'Bearer ' + access_token,
