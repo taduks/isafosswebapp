@@ -10,6 +10,9 @@ import ProtectedRoute from './authGuard';
 import SignIn from '../Login/SignIn';
 import OktaSecurity from './okta';
 import {LoginCallback, SecureRoute} from "@okta/okta-react";
+import TaxesPage from "../pages/NetSuite/taxes/TaxesPage";
+import CustomersPage from "../pages/NetSuite/customers/CustomersPage";
+import VendorsPage from "../pages/NetSuite/vendors/VendorsPage";
 
 function AppRoutes() {
     return (
@@ -24,6 +27,9 @@ function AppRoutes() {
                                 <Route path="/">
                                     <Route path="/dashboard" component={DashboardPage} />
                                     <Route path="/netsuite" component={NetSuitePage} />
+                                    <Route path="/customers" component={CustomersPage} />
+                                    <Route path="/vendors" component={VendorsPage} />
+                                    <Route path="/taxes" component={TaxesPage} />
                                     <Route path="/platform-data" component={PlatformDataPage} />
                                     <Route path="/isaf" component={ISafPage} />
                                     <Route path="/settings" component={SettingsPage} />

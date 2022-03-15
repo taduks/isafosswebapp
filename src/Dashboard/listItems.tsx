@@ -6,6 +6,7 @@ import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AssignmentIcon from '@mui/icons-material/Assignment';
@@ -19,23 +20,23 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
-    <ListItem button component={Link} to="/netsuite">
+    <ListItem button component={Link} to="/customers">
       <ListItemIcon>
-        <EventNoteIcon />
+          <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="NetSuite" />
+      <ListItemText primary="Customers" />
     </ListItem>
-    <ListItem button component={Link} to="/platform-data" >
+    <ListItem button component={Link} to="/vendors" >
       <ListItemIcon>
         <FolderOpenIcon />
       </ListItemIcon>
-      <ListItemText primary="Platform data" />
+      <ListItemText primary="Vendors" />
     </ListItem>
-    <ListItem button component={Link} to="/isaf">
+    <ListItem button component={Link} to="/taxes">
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="iSAF" />
+      <ListItemText primary="Taxes" />
     </ListItem>
     <ListItem button component={Link} to="/settings">
       <ListItemIcon>
