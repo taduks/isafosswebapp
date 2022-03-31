@@ -11,13 +11,12 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems } from './listItems';
 import {useOktaAuth} from "@okta/okta-react";
 import {useEffect, useState} from "react";
+import SideMenu from "./menu/SideMenu";
 
 function Copyright(props: any) {
   return (
@@ -163,8 +162,7 @@ function DashboardContent({ children }: any) {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List>{mainListItems}</List>
-          <Divider />
+          <SideMenu/>
         </Drawer>
         <Box
           component="main"
