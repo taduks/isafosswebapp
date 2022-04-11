@@ -17,3 +17,8 @@ spec:
           image: isafoss.azurecr.io/testvintedisafosswebapp
           ports:
           - containerPort: 3000
+          env:
+          - name: AUTH_OKTA_ISSUER
+            value: __AUTH_OKTA_ISSUER_VALUE__
+          - name: AUTH_OKTA_CLIENT_ID
+            value: __AUTH_OKTA_CLIENT_ID_VALUE__
