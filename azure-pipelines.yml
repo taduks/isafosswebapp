@@ -44,10 +44,44 @@ stages:
     - upload: manifests
       artifact: manifests
 
+- stage: Replace_Tokens
+  jobs:
+  - deployment: Replace_Tokens
+    variables:
+    - name: AUTH_OKTA_ISSUER_VALUE
+      value: $(AUTH_OKTA_ISSUER)
+    - name: AUTH_OKTA_CLIENT_ID
+      value: $(AUTH_OKTA_CLIENT_ID)
+
+    pool:
+      vmImage: $(vmImageName)
+    environment: 'testvintedisafosswebapp-2161.isaf-stage'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+            displayName: Replace tokens in **/*
+            inputs:
+              rootDirectory: '$(Pipeline.Workspace)/manifests'
+              targetFiles: '**/*.yml'
+              keepToken: true
+              tokenPrefix: __
+              tokenSuffix: __
+
+          - task: Kubernetes@1
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: 'Isaf-kubernetes-isaf-stage'
+              namespace: 'isaf-stage'
+              command: 'apply'
+              arguments: '-f $(Pipeline.Workspace)/manifests/'
+              secretType: 'dockerRegistry'
+              containerRegistryType: 'Azure Container Registry'
+
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
-
   jobs:
   - deployment: Deploy
     displayName: Deploy
