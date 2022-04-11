@@ -44,14 +44,14 @@ stages:
     - upload: manifests
       artifact: manifests
 
-- stage: Replace_Tokens
+- stage: ReplaceTokens
   jobs:
-  - deployment: Replace_Tokens
+  - deployment: ReplaceTokens
     variables:
-    - name: AUTH_OKTA_ISSUER_VALUE
-      value: $(OKTA_ISSUER)
-    - name: AUTH_OKTA_CLIENT_ID_VALUE
-      value: $(OKTA_CLIENT_ID)
+    - name: AUTH-OKTA-VALUE
+      value: $(Okta id)
+    - name: AUTH-OKTA-ID
+      value: $(okta value)
 
     pool:
       vmImage: $(vmImageName)
