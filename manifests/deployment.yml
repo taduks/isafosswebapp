@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: testvintedisafosswebapp 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testvintedisafosswebapp
+  template:
+    metadata:
+      labels:
+        app: testvintedisafosswebapp 
+    spec:
+      containers:
+        - name: testvintedisafosswebapp 
+          image: isafoss.azurecr.io/testvintedisafosswebapp
+          ports:
+          - containerPort: 3000
