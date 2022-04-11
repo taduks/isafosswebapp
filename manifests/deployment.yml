@@ -19,6 +19,6 @@ spec:
           - containerPort: 3000
           env:
           - name: AUTH_OKTA_ISSUER
-            value: __AUTH_OKTA_ISSUER_VALUE__
+            value: __AUTH-OKTA-VALUE__
           - name: AUTH_OKTA_CLIENT_ID
-            value: __AUTH_OKTA_CLIENT_ID_VALUE__
+            value: __AUTH-OKTA-ID__
